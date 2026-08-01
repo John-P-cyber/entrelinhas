@@ -30,7 +30,7 @@ for (const entry of entries) {
 }
 
 await mkdir(join(client, 'templates'), { recursive: true });
-for (const asset of ['logo.jpeg', 'jonathan.jpeg', 'capa_contos_vol1-site.jpg']) {
+for (const asset of ['logo.jpeg', 'jonathan.jpeg', 'capa_contos_vol1-site.jpg', 'capa_vizinhos_vol1_segredo-site.jpg']) {
     await copyFile(join(root, 'templates', asset), join(client, 'templates', asset));
 }
 await copyFile(join(root, 'worker', 'index.js'), join(server, 'index.js'));
