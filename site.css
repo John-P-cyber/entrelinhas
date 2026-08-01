@@ -884,6 +884,25 @@ a {
     line-height: .95;
 }
 
+.work-cover.work-cover-art {
+    min-height: 0;
+    aspect-ratio: 2 / 3;
+    padding: 0;
+    overflow: hidden;
+    background: #e9dec5;
+    box-shadow: -8px 10px 0 var(--ember), 0 18px 42px rgba(30, 38, 34, .18);
+}
+
+.work-cover.work-cover-art::after {
+    display: none;
+}
+
+.work-cover-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .work-details h2 {
     margin: 0 0 14px;
     font-family: var(--serif);

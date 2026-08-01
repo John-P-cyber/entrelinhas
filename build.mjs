@@ -29,7 +29,10 @@ for (const entry of entries) {
     }
 }
 
-await copyTree(join(root, 'templates'), join(client, 'templates'));
+await mkdir(join(client, 'templates'), { recursive: true });
+for (const asset of ['logo.jpeg', 'jonathan.jpeg', 'capa_contos_vol1-site.jpg']) {
+    await copyFile(join(root, 'templates', asset), join(client, 'templates', asset));
+}
 await copyFile(join(root, 'worker', 'index.js'), join(server, 'index.js'));
 await copyTree(join(root, '.openai'), join(output, '.openai'));
 
