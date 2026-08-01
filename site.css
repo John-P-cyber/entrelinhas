@@ -1119,6 +1119,79 @@ a {
     line-height: 1.65;
 }
 
+.universe-preview-section {
+    padding-top: 0;
+}
+
+.universe-locked-card {
+    display: grid;
+    grid-template-columns: minmax(190px, 250px) 1fr;
+    gap: clamp(30px, 5vw, 64px);
+    align-items: center;
+    padding: clamp(24px, 4vw, 46px);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(251, 248, 240, .96), rgba(242, 225, 218, .72));
+    box-shadow: var(--shadow);
+}
+
+.universe-locked-cover {
+    aspect-ratio: 2 / 3;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--forest);
+    box-shadow: 0 22px 44px rgba(30, 38, 34, .2);
+}
+
+.universe-locked-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.universe-locked-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 58%, rgba(22, 61, 53, .76));
+}
+
+.universe-locked-cover span {
+    position: absolute;
+    z-index: 1;
+    right: 16px;
+    bottom: 15px;
+    left: 16px;
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.universe-locked-copy h3 {
+    margin: 12px 0 18px;
+    font-family: var(--serif);
+    font-size: clamp(42px, 5vw, 66px);
+    font-weight: 500;
+    line-height: .98;
+    letter-spacing: -.035em;
+}
+
+.universe-locked-copy p {
+    max-width: 650px;
+    margin: 0 0 24px;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.universe-locked-action {
+    margin-top: 30px;
+}
+
 .tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -1761,6 +1834,10 @@ body.reader-page {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .universe-locked-card {
+        grid-template-columns: 190px 1fr;
+    }
+
     .reader-page .nav-menu {
         display: none !important;
     }
@@ -1920,6 +1997,27 @@ body.reader-page {
     .notes-grid,
     .principles-grid {
         grid-template-columns: 1fr;
+    }
+
+    .universe-locked-card {
+        grid-template-columns: 1fr;
+    }
+
+    .universe-locked-cover {
+        width: min(210px, 76%);
+        margin-inline: auto;
+    }
+
+    .universe-locked-copy {
+        text-align: center;
+    }
+
+    .universe-locked-copy p {
+        margin-inline: auto;
+    }
+
+    .universe-locked-copy .tag-list {
+        justify-content: center;
     }
 
     .note-card.featured-note {
