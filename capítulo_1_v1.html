@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 1 - Contos de Sombra e Fogo</title>
+    <style>
+        :root {
+            --bg-sidebar: #5b1b1c; /* Tom de vinho */
+            --text-sidebar: #e8dcc4;
+            --hover-sidebar: #7a2527;
+            --gold-accent: #cfa85e; /* Dourado */
+            --bg-main: #f9f7f1; /* Tom de papel/pergaminho */
+            --text-main: #2b2b2b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh; /* Trava a altura para a barra lateral ficar fixa no Desktop */
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        /* BARRA LATERAL */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            color: var(--text-sidebar);
+            display: flex;
+            flex-direction: column;
+            border-right: 4px solid var(--gold-accent);
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .logo-container {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(207, 168, 94, 0.3);
+        }
+
+        .logo-container img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-accent);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            object-fit: cover;
+        }
+
+        .logo-container h1 {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--gold-accent);
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            padding: 12px 25px;
+            color: var(--text-sidebar);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s, border-color 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item:hover {
+            background-color: var(--hover-sidebar);
+            border-left: 4px solid var(--gold-accent);
+            color: #fff;
+        }
+
+        .nav-category {
+            padding: 15px 25px 5px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            letter-spacing: 1px;
+        }
+
+        /* CONTEÚDO PRINCIPAL (ÁREA DE LEITURA) */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        .top-bar {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--gold-accent);
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: var(--bg-sidebar);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+            color: var(--gold-accent);
+        }
+
+        /* O CONTAINER DO TEXTO DO LIVRO */
+        .chapter-container {
+            width: 100%;
+            max-width: 750px; 
+            background-color: var(--white);
+            padding: 50px 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .volume-tag {
+            font-size: 0.9rem;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .chapter-header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.2rem;
+            color: var(--bg-sidebar);
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+
+        .separator {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold-accent), transparent);
+            margin: 25px auto 0;
+            width: 50%;
+        }
+
+        .text-body {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: #2b2b2b;
+        }
+
+        .text-body p {
+            margin-bottom: 20px;
+        }
+
+        .text-body p:first-of-type::first-letter {
+            float: left;
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-right: 10px;
+            padding-top: 5px;
+            color: var(--bg-sidebar);
+            font-family: 'Georgia', serif;
+        }
+
+        /* ELEMENTOS EXTRAS DO TEXTO (Quebra de cena, citação e carta) */
+        .scene-break {
+            border: 0;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .scene-break::before {
+            content: "✦ ✦ ✦"; 
+            color: var(--gold-accent);
+            font-size: 1.2rem;
+            letter-spacing: 15px;
+        }
+
+        .highlight-quote {
+            font-style: italic;
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--bg-sidebar);
+            margin: 30px 0;
+            padding: 20px;
+            border-top: 1px solid rgba(207, 168, 94, 0.3);
+            border-bottom: 1px solid rgba(207, 168, 94, 0.3);
+        }
+
+        .letter-box {
+            background-color: #f4efdf;
+            padding: 30px 40px;
+            margin: 40px 0;
+            border-radius: 4px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--gold-accent);
+            font-family: 'Georgia', serif;
+        }
+
+        .letter-signature {
+            margin-top: 30px;
+            font-style: italic;
+            text-align: right;
+        }
+
+        /* NAVEGAÇÃO */
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: 2px solid var(--gold-accent);
+            color: var(--bg-sidebar);
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--gold-accent);
+            color: var(--white);
+        }
+
+        /* ========================================= */
+        /* RESPONSIVIDADE (CELULARES E TABLETS)      */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column; /* Coloca a barra lateral no topo */
+                overflow-y: auto; /* A tela toda rola agora */
+                height: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 4px solid var(--gold-accent);
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .logo-container img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-container h1 {
+                margin-top: 0;
+                font-size: 1.1rem;
+            }
+
+            /* Menu rolável horizontalmente no mobile */
+            .nav-menu {
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 10px;
+                white-space: nowrap;
+                align-items: center;
+            }
+
+            .nav-category {
+                display: none; /* Oculta categorias para poupar espaço */
+            }
+
+            .nav-item {
+                border-left: none !important;
+                border-bottom: 4px solid transparent;
+                padding: 8px 15px;
+            }
+
+            .nav-item[style*="border-left"] {
+                /* Converte a marcação do item ativo de borda esquerda para borda inferior */
+                border-bottom: 4px solid var(--gold-accent) !important;
+                background-color: var(--hover-sidebar) !important;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+                overflow-y: visible; /* A rolagem foi passada para o body */
+            }
+
+            .chapter-container {
+                padding: 30px 20px;
+            }
+
+            .chapter-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .text-body {
+                font-size: 1rem;
+                text-align: left; /* No celular, alinhar à esquerda facilita a leitura */
+            }
+
+            .text-body p:first-of-type::first-letter {
+                font-size: 3.2rem;
+            }
+
+            .letter-box {
+                padding: 20px 20px;
+            }
+
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-btn {
+                width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="site.css">
+    <script src="site.js" defer></script>
+</head>
+<body class="reader-page">
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="templates/logo.jpeg" alt="Emblema de Contos de Sombra e Fogo">
+            <h1>Contos de Sombra e Fogo</h1>
+        </div>
+        <nav class="nav-menu">
+            <span class="nav-category">Arquivo</span>
+            <a href="./index.html" class="nav-item">Início</a>
+            <a href="./personagens.html" class="nav-item">Personagens</a>
+
+            <span class="nav-category">Leitura</span>
+            <a href="./lista_de_capítulos_v1.html" class="nav-item" style="border-left: 4px solid var(--gold-accent); background-color: var(--hover-sidebar);">Capítulos</a>
+            <a href="./livro.html" class="nav-item">Obras</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        
+        <div class="top-bar">
+            <input type="text" class="search-bar" placeholder="Pesquisar na Wiki ...">
+            
+            <div class="breadcrumb">
+                <a href="./index.html">Arquivo</a> > <a href="./livro.html">Obras</a> > <a href="./lista_de_capítulos_v1.html">Volume 1</a> > Capítulo 1
+            </div>
+        </div>
+
+        <article class="chapter-container">
+            <header class="chapter-header">
+                <span class="volume-tag">Volume 1</span>
+                <h1>Capítulo 1: Tudo começa com uma carta </h1>
+                <hr class="separator" />
+            </header>
+
+            <div class="text-body">
+                <p><em>"Nunca confie em um sussurro vindo do escuro."</em></p>
+                <p>Foi o que minha avó sempre me disse — com aquela voz rouca, meio soturna, como se soubesse de algo que ninguém mais ousava descobrir. Eu era criança demais para entender o que ela queria dizer na época. Mas hoje, com dezesseis anos e cicatrizes que não aparecem na pele, suspeito que ela estava tentando me preparar para o que viria.</p>
+                <p>Na verdade, acho que nada pode realmente te preparar para quando o mundo como você o conhece... quebra.</p>
+                <p>Mas, calma. Talvez eu esteja começando do fim. E como em qualquer bom conto — principalmente um que mistura sombra e fogo —, é melhor começar do começo.</p>
+                <p>Meu nome é Jonathan. E essa é a história de como tudo mudou.</p>
+                
+                <hr class="scene-break" />
+
+                <p>Nasci em uma cidade comum, em um bairro comum, entre pessoas que acreditavam que o mundo era feito apenas do que se podia tocar. Para os meus vizinhos, a vida era uma sequência de dias úteis, boletos e orações de domingo. Só que, pra mim, tudo sempre pareceu... torto.</p>
+                <p>E não digo só por causa dos meus pés.</p>
+                <p>Tenho um problema de rotação nos joelhos desde pequeno, o que faz com que eu ande um pouco para dentro, como se cada passo desafiasse a ideia de “reta”. Isso sempre me fez parecer estranho para os outros — mesmo com meu corpo atlético, meus 1,75m e os treinos que meu pai insistia que eu fizesse para "compensar". Mas as pessoas não notam o quanto algo está desalinhado até que o desalinhamento incomode.</p>
+                <p>Com o tempo, percebi que não era só o meu corpo que era assim. Era como se o mundo inteiro estivesse fora de prumo. Como se houvesse algo escondido por trás da realidade, algo que ninguém mais via. Só eu.</p>
+                <p>Ou, pelo menos, era o que eu achava.</p>
+
+                <hr class="scene-break" />
+
+                <p>Faz três meses que minha avó morreu. Ninguém conseguiu explicar a causa. Um "colapso inesperado", disseram os médicos, como se o coração dela tivesse simplesmente... desistido. Mas minha avó não era do tipo que desiste. Ela era forte, lúcida, cheia de vida até o último dia. E ela me dizia coisas estranhas. Coisas das quais só hoje começo a me lembrar direito.</p>
+                <p>Frases soltas como: <em>"Nem tudo que é invisível é irreal"</em>, ou <em>"Há olhos que veem o que os outros não suportariam ver"</em>.</p>
+                <p>Na época, eu achava que era poesia de velho. Hoje, não sei mais.</p>
+                <p>Desde então, tudo mudou. Meus amigos se afastaram — ou eu me afastei deles, não tenho certeza. Só me restaram meus pais, meu avô e Gordon.</p>
+                <p>Gordon é... difícil de explicar. Mora na casa da frente, sozinho, e quase nunca sai de lá. A maioria das pessoas acha que ele é só um velho excêntrico, meio paranoico, desses que instalam cortinas pesadas e vivem espiando pela fresta. Mas eu converso com ele. Quase toda semana, na verdade.</p>
+                <p>Gordon parece saber das coisas. Não das coisas normais. Das outras.</p>
+                <p>Hoje, por exemplo, ele me esperava na calçada antes mesmo de eu sair. Estava encostado no portão, com os braços cruzados e aquele olhar que parece atravessar a gente como raio-X. Como se soubesse o que eu estava pensando.</p>
+                <p>— Dormiu mal, Jonathan? — ele perguntou, antes mesmo de eu abrir a boca.</p>
+                <p>— Como sempre — respondi, meio rindo, meio suspirando.</p>
+                <p>— Teve o sonho de novo?</p>
+                <p>Congelou tudo em mim. Eu não tinha contado para ninguém sobre aquele sonho. Nem para a minha mãe. Nem para o meu avô. Um campo seco, coberto de cinzas, uma árvore de galhos retorcidos bem no centro... e alguém me chamando por um nome que não era o meu.</p>
+                <p>Engoli em seco.</p>
+                <p>— Qual sonho?</p>
+                <p>Ele me olhou por longos segundos. Depois apenas sorriu, como se estivesse testando minha paciência ou me provocando.</p>
+                <p>— Vai chegar a hora de parar de fugir, garoto. A sombra já está se movendo, e o fogo... o fogo logo será aceso.</p>
+
+                <hr class="scene-break" />
+
+                <p>Eu ia perguntar o que ele queria dizer com aquilo, mas minha mãe me chamou da porta. Tinha deixado o café esfriar. E eu, mais uma vez, deixei o momento passar.</p>
+                <p>No fim daquele dia, não consegui dormir. Fiquei encarando o teto do quarto por horas, ouvindo os próprios pensamentos como um bando de vozes apressadas correndo num corredor estreito.</p>
+                <p>Em algum momento, me levantei. Fui até a estante onde ficam as coisas da minha avó. Ela tinha deixado um pequeno baú para mim, mas eu nunca tive coragem de abrir. Nem sei por quê. Só... não parecia a hora certa.</p>
+                <p>Mas naquela noite, algo estava diferente. O quarto parecia mais frio, e por um segundo — juro por tudo — senti o cheiro de lavanda que ela sempre usava.</p>
+                <p>Me ajoelhei. Abri o baú.</p>
+                <p>Dentro, havia só uma coisa: um envelope preto, com meu nome escrito à mão, na caligrafia dela.</p>
+                <p>Minha pele se arrepiou inteira.</p>
+                <p>No verso, escrito com letras finas e firmes, estava uma única frase:</p>
+                
+                <blockquote class="highlight-quote">
+                    "Você nasceu do espírito. E o espírito te reclamará."
+                </blockquote>
+
+                <p>O envelope ainda estava em minhas mãos quando ouvi passos no corredor.</p>
+                <p>— Jonathan? — Era a voz da minha mãe. — Tá acordado?</p>
+                <p>Levei um susto. O som veio junto com a luz fraca que invadiu meu quarto pela fresta da porta. Instintivamente, escondi o envelope debaixo da blusa.</p>
+                <p>— Tô, mãe. Só… não estava conseguindo dormir.</p>
+                <p>Ela entrou, com aquele jeito que só mãe tem: entre o cuidado e a desconfiança. Sentou-se na beira da cama e me olhou como se pudesse ler minha alma.</p>
+                <p>— Você precisa parar de ficar revirando as coisas da sua avó. Sei que sente falta dela. Todos sentimos. Mas isso só vai te machucar mais, filho.</p>
+                <p>Assenti, sem ter o que responder. Parte de mim queria dizer que ela tinha razão. A outra parte… estava queimando de curiosidade com o que havia no envelope escondido contra o meu peito.</p>
+                <p>Ela beijou minha testa, passou a mão nos meus cabelos e saiu sem dizer mais nada. Esperei o som da porta do quarto dela se fechar. Depois, guardei o envelope no fundo da gaveta, debaixo de algumas roupas dobradas.</p>
+                <p>Não era hora. Ainda não. Mas algo me dizia que seria em breve.</p>
+
+                <hr class="scene-break" />
+
+                <p>A manhã seguinte chegou mais cinza do que o normal. As nuvens cobriam o céu como um lençol grosso, e o ar parecia pesar diferente.</p>
+                <p>Domingo. Dia de culto.</p>
+                <p>Fomos todos à igreja — eu, meus pais e meu avô, que já estava lá antes de todos, como sempre. O templo era pequeno, com bancos de madeira que rangiam e vitrais simples que filtravam a luz em tons suaves. Havia o cheiro de velas e das flores que as senhoras mais velhas traziam toda semana.</p>
+                <p>Sentei ao lado da minha mãe, que sussurrava uma oração com os olhos fechados, enquanto meu pai mantinha os braços cruzados e o olhar fixo no altar.</p>
+                <p>Meu avô subiu ao púlpito com a calma de quem faz isso há décadas. Carregava a Bíblia em uma mão e, no bolso da camisa, como sempre, o retrato antigo dele com minha avó.</p>
+                <p>— Irmãos — começou ele —, hoje quero falar sobre o chamado.</p>
+                <p>Silêncio. Até o vento parou para ouvir.</p>
+                <p>— Nem todo chamado é claro. Às vezes, ele vem como um sussurro. Outras, como dor. E outras ainda, como silêncio. Mas uma coisa é certa: quando é para você, ele vai te encontrar. Quer você esteja pronto ou não.</p>
+                <p>Foi nesse momento que algo aconteceu.</p>
+                <p>O som da voz do meu avô se distorceu por um instante, como se ecoasse dentro de um túnel. Pisquei, e o templo inteiro parecia... diferente. As cores sumiram. Tudo ficou em tons de cinza. As pessoas ao meu redor se tornaram sombras imóveis, como se o tempo tivesse congelado.</p>
+                <p>E então, no altar, no lugar onde meu avô falava, vi uma figura.</p>
+                <p>Era alta, encapuzada, feita de fumaça escura e com olhos como brasas. Estava parada, olhando direto para mim. E mesmo sem dizer nada, eu ouvi sua voz dentro da minha cabeça.</p>
+                <p><em>"O espírito te vê."</em></p>
+                <p>Pisquei de novo.</p>
+                <p>A cor voltou. As pessoas se moveram. Meu avô continuava o sermão, como se nada tivesse acontecido. Minha respiração estava acelerada, o suor frio escorria pela nuca.</p>
+                <p>Olhei ao redor, confuso. Ninguém parecia ter percebido.</p>
+                <p>Exceto Gordon.</p>
+                <p>Ele estava sentado no fundo da igreja. Me encarava com os olhos arregalados, a boca ligeiramente aberta. Como se tivesse visto o mesmo que eu. Como se soubesse exatamente o que aquilo significava.</p>
+                <p>Ele se levantou antes do culto terminar.</p>
+                <p>E eu soube, naquele instante, que aquela carta — aquela carta escondida na gaveta — precisava ser aberta. Mas não sem antes falar com Gordon.</p>
+
+                <hr class="scene-break" />
+
+                <p>A igreja ainda estava em silêncio quando o culto terminou. Meus pais ficaram para conversar com algumas pessoas, e meu avô orava com um casal mais velho no altar. Eu, por outro lado, saí quase correndo pela porta dos fundos.</p>
+                <p>Gordon andava com passos pesados pela calçada de terra, a cabeça baixa como sempre. Mas havia algo diferente em sua postura — como se estivesse tenso, em alerta. Talvez tentando fingir que não estava esperando por mim.</p>
+                <p>— Gordon! — chamei, sem conseguir esconder o nervosismo na voz.</p>
+                <p>Ele parou. Não se virou de imediato. Apenas ficou ali, parado, como se pensasse em fugir.</p>
+                <p>— Eu vi uma coisa. — aproximei-me — Durante o sermão do meu avô. Uma... figura. Sombria. Me disse algo. Como se falasse dentro da minha cabeça.</p>
+                <p>Ele suspirou fundo e só então se virou, revelando os olhos vermelhos, como se não dormisse há dias.</p>
+                <p>— <em>O espírito te vê…</em> — repetiu em voz baixa, quase um sussurro para si mesmo.</p>
+                <p>— Você viu também? — perguntei.</p>
+                <p>— Vi. Senti. E você precisa tomar cuidado, Jonathan. Isso não acontece por acaso.</p>
+                <p>Ele olhou em volta, como se o céu cinzento pudesse estar ouvindo.</p>
+                <p>— Por isso… você tem que ler a carta.</p>
+                <p>— Como sabe da carta?</p>
+                <p>Ele riu, sem humor. O som era seco, cansado.</p>
+                <p>— Porque ela é o que sua avó mais temia… e o que ela mais esperava que você encontrasse. Ela sabia que esse momento chegaria. Sempre soube.</p>
+                <p>Gordon coçou a barba desgrenhada e fitou o chão, indeciso. Havia tanta coisa presa nos olhos dele. Arrependimento. Medo. Saudade.</p>
+                <p>— A carta vai te contar o que você precisa saber. Não tudo. Mas o suficiente.</p>
+                <p>— E depois? — perguntei, sentindo meu coração acelerar.</p>
+                <p>— Depois… você vai entender o que sua avó era de verdade. E o que você é.</p>
+                <p>— É sobre a escola, não é?</p>
+                <p>Ele gelou. O silêncio dele foi resposta suficiente. Mas, mesmo assim, negou com a cabeça.</p>
+                <p>— Eu não posso dizer, ainda não. Nem devo. Não sou a pessoa certa.</p>
+                <p>— Mas você sabe.</p>
+                <p>Ele fechou os olhos.</p>
+                <p>— Eu devia ter protegido ela. Era minha dívida. E falhei.</p>
+                <p>Gordon então colocou a mão no meu ombro, com firmeza.</p>
+                <p>— Leia a carta. Hoje. Antes que o chamado se torne um grito.</p>
+                <p>E foi embora, deixando a poeira da rua se levantar atrás dele.</p>
+
+                <hr class="scene-break" />
+
+                <p>Naquela noite, o envelope estava em minhas mãos de novo.</p>
+                <p>As palavras de Gordon ainda martelavam na minha cabeça. <em>"Leia antes que o chamado se torne um grito."</em></p>
+                <p>Sentei no chão do meu quarto, encostado na cama, com a luz do abajur acesa e a porta trancada. Meus pais já dormiam. O avô roncava no quarto ao lado. O mundo lá fora parecia quieto demais — como se o próprio tempo segurasse o fôlego.</p>
+                <p>Rasguei com cuidado a lateral do envelope. Dentro, havia uma carta escrita à mão, com a caligrafia familiar da minha avó. E, junto dela, algumas fotos antigas — em preto e branco, outras desbotadas pela idade — mostrando uma mulher sorridente cercada de jovens e adultos com olhos vivos. Em uma delas, reconheci Gordon, muito mais novo, usando um uniforme estranho, ao lado de outros professores. Em outra, minha avó estava de braços dados com um homem que parecia ser seu irmão, ambos diante de uma árvore imensa, que parecia mais viva que o normal.</p>
+                <p>Respirei fundo e comecei a ler.</p>
+
+                <div class="letter-box">
+                    <p>Meu querido Jonathan,</p>
+                    <p>Se estás com esta carta nas mãos, é porque o tempo — aquele velho guardião que tudo observa — enfim sussurrou teu nome à verdade.</p>
+                    <p>Preferia que não soubesses. Preferia que teus passos seguissem leves, sem o peso das perguntas. Mas há portas que se abrem mesmo quando fechamos os olhos. E há destinos que não se calam.</p>
+                    <p>Antes de ser avó, fui chamada por algo maior.</p>
+                    <p>Fui guia de jovens que, como você, nasceram com o coração inquieto e os olhos abertos para o invisível.</p>
+                    <p>Fui professora na Escola Monte Horebe — um refúgio escondido entre as pedras do mundo, onde os dons são luz e espada.</p>
+                    <p>Ali se formam aqueles tocados pelos três aspectos: o Corpo que move, a Mente que molda e o Espírito que vê.</p>
+                    <p>Ali, aprende-se a ouvir o sussurro do vento e a reconhecer a linguagem do céu.</p>
+                    <p>Se teu chamado já despertou, você sentirá. O caminho não é comum.</p>
+                    <p>Vá até a Serra das Almas, onde o Morro Santo ergue seu dorso contra o céu. Há uma figueira seca, solitária, próxima à ruína de uma capela esquecida.</p>
+                    <p>Toque sua raiz com a mão direita. E espere.</p>
+                    <p>Se fores esperado... a entrada se mostrará.</p>
+                    <p>As imagens que te envio são sombras da minha história. Rostos que talvez jamais conheças, mas que um dia caminharam comigo.</p>
+                    <p>Não as veja como respostas. Veja-as como ecos.</p>
+                    <p>Não estou mais aí. Mas nunca estive tão próxima. Te observo do lugar onde os nomes se dissolvem, mas o amor permanece.</p>
+                    <p>Vai, se for tua hora. Mas vá com verdade. Pois o mundo dentro de ti é maior do que o que te cerca.</p>
+                    <p class="letter-signature">Com ternura eterna,<br>Maria José</p>
+                </div>
+
+                <p>Fechei a carta com as mãos trêmulas, mas o coração estranhamente calmo. Lá fora, o vento balançava a cortina como se tentasse me chamar. Li o nome da escola mais uma vez: Horebe. Ele soava como um eco antigo, como se estivesse dentro de mim desde sempre, apenas esperando ser lembrado. Por um momento, não senti medo — só silêncio, profundo e cheio de perguntas. E, pela primeira vez desde que minha avó se foi, tive a sensação de que ela ainda estava aqui... me chamando para subir o monte.</p>
+            </div>
+
+            <footer class="chapter-navigation">
+                <a href="./lista_de_capítulos_v1.html" class="nav-btn">&#8592; Sumário</a>
+                <a href="./capítulo_2_v1.html" class="nav-btn">Próximo Capítulo &#8594;</a>
+            </footer>
+        </article>
+
+    </main>
+
+</body>
+</html>

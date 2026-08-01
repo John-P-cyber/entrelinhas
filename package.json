@@ -1,0 +1,9 @@
+{
+  "name": "entrelinhas-arquivo-autoral",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node --preserve-symlinks-main build.mjs"
+  }
+}

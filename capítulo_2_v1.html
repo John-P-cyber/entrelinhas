@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 2 - Contos de Sombra e Fogo</title>
+    <style>
+        :root {
+            --bg-sidebar: #5b1b1c;
+            --text-sidebar: #e8dcc4;
+            --hover-sidebar: #7a2527;
+            --gold-accent: #cfa85e;
+            --bg-main: #f9f7f1;
+            --text-main: #2b2b2b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        /* BARRA LATERAL */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            color: var(--text-sidebar);
+            display: flex;
+            flex-direction: column;
+            border-right: 4px solid var(--gold-accent);
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .logo-container {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(207, 168, 94, 0.3);
+        }
+
+        .logo-container img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-accent);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            object-fit: cover;
+        }
+
+        .logo-container h1 {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--gold-accent);
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            padding: 12px 25px;
+            color: var(--text-sidebar);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s, border-color 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item:hover {
+            background-color: var(--hover-sidebar);
+            border-left: 4px solid var(--gold-accent);
+            color: #fff;
+        }
+
+        .nav-category {
+            padding: 15px 25px 5px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            letter-spacing: 1px;
+        }
+
+        /* CONTEÚDO PRINCIPAL (ÁREA DE LEITURA) */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        .top-bar {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--gold-accent);
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: var(--bg-sidebar);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+            color: var(--gold-accent);
+        }
+
+        /* O CONTAINER DO TEXTO DO LIVRO */
+        .chapter-container {
+            width: 100%;
+            max-width: 750px; 
+            background-color: var(--white);
+            padding: 50px 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .volume-tag {
+            font-size: 0.9rem;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .chapter-header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.2rem;
+            color: var(--bg-sidebar);
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+
+        .separator {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold-accent), transparent);
+            margin: 25px auto 0;
+            width: 50%;
+        }
+
+        .text-body {
+            font-family: 'Georgia', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: #2b2b2b;
+        }
+
+        .text-body p {
+            margin-bottom: 20px;
+        }
+
+        .text-body p:first-of-type::first-letter {
+            float: left;
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-right: 10px;
+            padding-top: 5px;
+            color: var(--bg-sidebar);
+            font-family: 'Georgia', serif;
+        }
+
+        /* ELEMENTOS EXTRAS DO TEXTO */
+        .scene-break {
+            border: 0;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .scene-break::before {
+            content: "✦ ✦ ✦"; 
+            color: var(--gold-accent);
+            font-size: 1.2rem;
+            letter-spacing: 15px;
+        }
+
+        .highlight-quote {
+            font-style: italic;
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--bg-sidebar);
+            margin: 30px 0;
+            padding: 20px;
+            border-top: 1px solid rgba(207, 168, 94, 0.3);
+            border-bottom: 1px solid rgba(207, 168, 94, 0.3);
+        }
+
+        /* NAVEGAÇÃO */
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: 2px solid var(--gold-accent);
+            color: var(--bg-sidebar);
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--gold-accent);
+            color: var(--white);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow-y: auto; height: auto; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 4px solid var(--gold-accent); }
+            .logo-container { display: flex; align-items: center; justify-content: center; gap: 15px; padding: 15px; }
+            .logo-container img { width: 60px; height: 60px; }
+            .logo-container h1 { margin-top: 0; font-size: 1.1rem; }
+            .nav-menu { flex-direction: row; overflow-x: auto; padding: 10px; white-space: nowrap; align-items: center; }
+            .nav-category { display: none; }
+            .nav-item { border-left: none !important; border-bottom: 4px solid transparent; padding: 8px 15px; }
+            .nav-item[style*="border-left"] { border-bottom: 4px solid var(--gold-accent) !important; background-color: var(--hover-sidebar) !important; }
+            .main-content { padding: 20px 15px; overflow-y: visible; }
+            .chapter-container { padding: 30px 20px; }
+            .chapter-header h1 { font-size: 1.7rem; }
+            .text-body { font-size: 1rem; text-align: left; }
+            .text-body p:first-of-type::first-letter { font-size: 3.2rem; }
+            .chapter-navigation { flex-direction: column; gap: 15px; }
+            .nav-btn { width: 100%; }
+        }
+    </style>
+    <link rel="stylesheet" href="site.css">
+    <script src="site.js" defer></script>
+</head>
+<body class="reader-page">
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="templates/logo.jpeg" alt="Emblema de Contos de Sombra e Fogo">
+            <h1>Contos de Sombra e Fogo</h1>
+        </div>
+        <nav class="nav-menu">
+            <span class="nav-category">Arquivo</span>
+            <a href="index.html" class="nav-item">Início</a>
+            <a href="personagens.html" class="nav-item">Personagens</a>
+
+            <span class="nav-category">Leitura</span>
+            <a href="lista_de_capítulos_v1.html" class="nav-item" style="border-left: 4px solid var(--gold-accent); background-color: var(--hover-sidebar);">Capítulos</a>
+            <a href="livro.html" class="nav-item">Obras</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        
+        <div class="top-bar">
+            <input type="text" class="search-bar" placeholder="Pesquisar na Wiki ...">
+            
+            <div class="breadcrumb">
+                <a href="index.html">Arquivo</a> > <a href="livro.html">Obras</a> > <a href="lista_de_capítulos_v1.html">Volume 1</a> > Capítulo 2
+            </div>
+        </div>
+
+        <article class="chapter-container">
+            <header class="chapter-header">
+                <span class="volume-tag">Volume 1</span>
+                <h1>Capítulo 2: De vista para o chamado</h1>
+                <hr class="separator" />
+            </header>
+
+            <div class="text-body"> 
+                <p>O sol de segunda-feira chegou sem fazer alarde, pintando o quarto com uma luz fraca e indiferente. A luz rastejava preguiçosamente pelas frestas da persiana, desenhando barras cinzentas na poeira suspensa do ar. Mas para mim, Jonathan, era como se o mundo estivesse em câmera lenta, e cada batida do meu coração fosse um martelo pesado no silêncio da manhã. Não sei se dormi, ou se a mente apenas desligou por um tempo enquanto o corpo permanecia em alerta, uma casca vazia, esperando o inevitável. A carta, dobrada e guardada no bolso de dentro da camisa, ainda pesava no meu peito como um pedaço de chumbo fundido. Um peso físico, palpável, que parecia drenar minha energia a cada respiração.</p>
+                
+                <p>Eu a havia lido quatro, talvez cinco vezes, durante a madrugada. Cada releitura era uma tentativa desesperada de buscar uma entrelinha, um código que pudesse desvendar o mistério de minha avó. Minha avó, que eu pensava conhecer. Cada palavra, manuscrita com a caligrafia elegante e firme dela, parecia ter sido talhada com o próprio sangue do tempo, com uma sabedoria preditiva assustadora. Era como se ela soubesse exatamente o momento, a dúvida e a exaustão em que eu precisaria daquelas poucas linhas. Ela havia escrito a carta não apenas para mim, mas para este exato momento na minha vida.</p>
+                
+                <p>Mas, ironicamente, a clareza dela só gerava mais e mais perguntas, cada uma mais profunda e desestabilizadora que a anterior. Se ela era essa pessoa de tanta sabedoria, por que o segredo? Por que o silêncio de uma vida inteira?</p>
+                
+                <p>Por isso, só havia uma pessoa a quem recorrer que poderia ter alguma pista, mesmo que ínfima.</p>
+                
+                <p>Meu avô, Luiz Filho, era o pilar da rotina. Um homem de hábitos tão inflexíveis quanto as árvores mais antigas do quintal, com raízes profundas na terra e na fé. Sua manhã era um ritual sagrado, imutável: acordar antes mesmo que o sol se atrevesse a espiar, quando a névoa ainda abraçava a grama; preparar seu café com mel — a única concessão doce que ele se permitia, um toque de suavidade em sua vida austera; ler um Salmo escolhido aleatoriamente, mas tratado como um recado pessoal e direcionado de Deus, um mapa moral para as próximas vinte e quatro horas; e só depois, se abrir para a conversação mundana, para os problemas triviais da casa e do mundo.</p>
+                
+                <p>Eu o encontrei sentado na varanda, no seu lugar de sempre, na cadeira de balanço de madeira escura, a mais gasta da casa, cujo rangido era a trilha sonora da nossa infância. Vestia a camisa branca impecável, engomada, a mesma que parecia servir a todos os propósitos de sua vida — fosse para pregar no domingo no púlpito da igreja, varrer as folhas que caíam no outono, ou receber uma visita inesperada com a mesma dignidade. Uma xícara de porcelana fumegava em sua mão, e o aroma de café forte, misturado a um toque sutil de cravo, flutuava no ar parado da manhã, um convite silencioso à calma.</p>
+                
+                <p>— Bom dia, vô. — Eu disse, a voz mais baixa e rouca do que o habitual, como se estivesse com medo de quebrar o ritual.</p>
+                
+                <p>Ele levantou os olhos azuis, devagar, o movimento ponderado e cheio de anos. Sua expressão nunca era de surpresa, mas de reconhecimento lento.</p>
+                
+                <p>— Bom dia, filho. A que devo a honra de sua visita antes do pão-de-queijo? Perdeu a hora do seu próprio ritual? — perguntou ele, com um leve traço de humor nos cantos da boca.</p>
+                
+                <p>Sentei-me no degrau de madeira ao lado dele, as pernas balançando levemente, a mente cheia de palavras que não conseguiam se organizar em uma frase coerente. Eu sabia o que queria dele — uma pista, um pedaço da vida secreta de minha avó, o mapa para o passado dela —, mas não como quebrar o gelo de anos de silêncio. A carta ainda estava ali, guardada no meu bolso, uma brasa quente que ameaçava me queimar por dentro.</p>
+                
+                <p>— Estava pensando na vó. — Foi o que consegui dizer. Uma meia-verdade. Uma âncora na realidade.</p>
+                
+                <p>Ele fez um leve gesto com o queixo, um assentimento melancólico que não precisava de palavras.</p>
+                
+                <p>— Também penso nela todos os dias. A vida não tem a mesma cor sem a risada dela. A casa está mais quieta, Jonathan. Quietude demais para um lugar que sempre foi tão cheio de vida.</p>
+                
+                <p>O silêncio que se seguiu não era incômodo, mas pesado. Era o tipo de silêncio que se instala entre duas almas que se amam e se respeitam profundamente, mas que não conseguem encontrar a ponte exata para se tocarem na hora da dor. Era um silêncio de luto, mas também de mistério não resolvido.</p>
+                
+                <p>— Quando ela era jovem... — Comecei, hesitante, escolhendo as palavras com cuidado forense. — O senhor sabe se ela teve uma vida diferente? Digo... algo fora do comum? Antes de vocês, antes daqui, antes de tudo que a gente conhece dela...</p>
+                
+                <p>Ele virou o rosto lentamente, fixando o olhar no quintal vasto e cheio de vida, como se estivesse buscando uma lembrança perdida entre as folhas do jasmineiro que cobria a cerca.</p>
+                
+                <p>— Sua avó... era cheia de fé, Jonathan. Uma rocha. Ela movia montanhas com a oração, você sabe disso. Mas... sim. Havia coisas que ela nunca me contou. Partes dela que permaneciam à sombra. — Ele apertou a xícara na mão, e o som do contato da porcelana com o anel em seu dedo foi alto no silêncio da manhã.</p>
+                
+                <p>— Como o quê, vô? — A curiosidade agora era uma pressão em meu peito, me impulsionando para frente.</p>
+                
+                <p>Ele sorriu de canto, um sorriso que trazia mais saudade do que alegria. Um sorriso que revelava uma aceitação tranquila do que nunca fora totalmente explicado.</p>
+                
+                <p>— Como o que ela fazia exatamente antes de me conhecer. Eu sei que ela foi professora por um tempo, em uma cidadezinha que nunca conseguia me lembrar o nome, e ela sempre sorria de um jeito especial quando eu perguntava. E sei que ela mexia com coisas... “espirituais”. Mais do que a fé comum de quem frequenta a igreja e aceita as coisas como vêm. Ela falava de forças, de chamados, de uma sabedoria que vinha de mais longe. Falava de um fogo que a havia tocado. Entende?</p>
+                
+                <p>Assenti com a cabeça, processando a informação. Um fogo, um chamado, partes na sombra. Era a primeira confirmação de que a carta não era fruto de uma imaginação febril.</p>
+                
+                <p>— O senhor nunca perguntou mais? — eu perguntei, incrédulo com o nível de aceitação.</p>
+                
+                <p>— Perguntei. Muitas vezes. Mas ela respondia com parábolas, com silêncios que eram mais eloquentes do que qualquer sermão. Ela dizia que o que era para ser dela, seria dela, e que o que era para ser meu, viria no tempo certo. E com o tempo, meu filho, aprendi que o silêncio dela era sagrado. Aprendi a respeitar o que ela guardava, porque o que ela me entregava era inteiro e verdadeiro.</p>
+                
+                <p>Ficamos ali, calados, por mais um longo momento. O vento soprou pelas árvores, um sopro fresco de dezembro, e, por um instante fugaz, jurei ouvir a voz dela, um murmúrio familiar vindo da cozinha. Ou talvez fosse só a saudade, forte e insistente, soprando na memória.</p>
+                
+                <p>— Mas por que a pergunta agora, Jonathan? Por que essa urgência depois de tanto tempo? Seus olhos... eles têm a mesma luz de quando a avó estava prestes a tomar uma grande decisão.</p>
+                
+                <p>Olhei para ele. Ele me olhou de volta, seus olhos penetrantes avaliando minha inquietação, como um sábio que já sabia a resposta, mas esperava que eu a verbalizasse.</p>
+                
+                <p>— Sonhei com ela. E ficou esse gosto de dúvida na boca. Como se eu devesse ter perguntado antes. Como se o tempo tivesse acabado e eu perdi a chance.</p>
+                
+                <p>Ele assentiu devagar, pousando a xícara no parapeito, um gesto de finalização.</p>
+                
+                <p>— Então talvez seja hora de você descobrir por conta própria. Algumas respostas a gente não ouve. A gente caminha até elas. E o tempo de sua avó era o tempo dela. O seu tempo... esse começou agora.</p>
+
+                <hr class="scene-break" />
+
+                <p>Depois do café e da conversa com o vô, senti que a dúvida não tinha diminuído; apenas tinha ganhado uma nova forma, mais sólida e menos etérea. Não era mais apenas uma pergunta vaga sobre o passado dela, era uma inquietação pulsante, algo que arranhava por dentro, pedindo passagem. Meu avô, com sua sabedoria calma e seu empurrão sutil, tinha me lançado suavemente para o abismo da ação. A carta, que eu retirei do bolso e amassei levemente enquanto pensava, não era mais uma relíquia. Era um mapa.</p>
+                
+                <p>E só havia uma pessoa, além da minha família, que podia me ajudar a dar o primeiro passo, a interpretar o mapa.</p>
+                
+                <p>Atravessei a rua com as mãos afundadas nos bolsos, o estômago estranhamente apertado, uma mistura de medo e adrenalina. A casa de Gordon era um reflexo de seu dono: um pouco torta, desleixada, cheia de segredos bem guardados atrás da fachada de mofo e tempo, mas estranhamente e inegavelmente acolhedora. As paredes externas, que outrora foram de um amarelo vibrante, estavam descascadas pela maresia da proximidade do mar, mas o ar sempre carregava o cheiro inconfundível de pão fresco e, por trás, o som de alguma música antiga, sempre instrumental e melancólica, saindo do rádio encardido da cozinha. Gordon, o melhor amigo de minha avó, era um mistério em si.</p>
+                
+                <p>Bati na porta de leve. Uma vez. Depois outra, mais firme.</p>
+                
+                <p>— Já vai! — gritou a voz rouca e ligeiramente impaciente lá de dentro.</p>
+                
+                <p>Gordon apareceu com um avental sujo de farinha, o rosto marcado por uma expressão de quem não se surpreendia com a visita, mas de quem sabia o motivo exato dela.</p>
+                
+                <p>— Ah, Jonathan... — Ele me encarou por um segundo, deu uma olhada rápida para os lados da rua deserta, como se procurasse espiões invisíveis, e abriu a porta com um gesto brusco de cabeça. — Entra aí, menino. Parece que viu um fantasma ou que acabou de ler um testamento.</p>
+                
+                <p>Entrei, e o cheiro de fermento e pão assado me envolveu completamente, um bálsamo familiar. O rádio sussurrava uma canção de piano, mais melancólica do que nunca.</p>
+                
+                <p>— Quer um pedaço? Está quente ainda. — Ele apontou para uma forma sobre o balcão, onde um pão de casca crocante brilhava recém-saído do forno, um contraste com a seriedade do momento.</p>
+                
+                <p>— Não, valeu. Vim conversar. Sobre a carta. Sobre o que ela me deu.</p>
+                
+                <p>Ele se sentou na cadeira de madeira mais velha da sala, aquela que rangia de um jeito familiar a cada respiração profunda, uma cadeira que parecia compartilhar seus segredos. Eu me sentei na da frente, a mesma onde tantas vezes ele me ensinou a consertar motores pequenos, a arte de falar menos e, principalmente, a ouvir mais.</p>
+                
+                <p>— Então... você leu. — Ele não fez uma pergunta. Foi uma constatação, uma conclusão inevitável que ele esperava desde o dia da morte dela.</p>
+                
+                <p>Assenti com a cabeça, olhando para o piso de tábuas irregulares, incapaz de sustentar o olhar penetrante dele por mais tempo.</p>
+                
+                <p>— Ela... era outra pessoa antes de tudo isso, né? Antes da casa, do vô, da igreja que a gente conhece... Por que ninguém nunca me contou?</p>
+                
+                <p>Gordon suspirou profundamente. Ele passou as mãos pelos cabelos ruivos, já ralos e totalmente desgrenhados, um gesto de exaustão mental.</p>
+                
+                <p>— Sua avó era uma gigante, Jonathan. No espírito, na sabedoria, na entrega ao que ela acreditava. Uma professora diferente de tudo que já se viu por aí... — ele parou, os olhos azuis meio perdidos, como se estivesse escolhendo cada palavra com a precisão de um cirurgião para não revelar algo cedo demais. — Mas você já deve ter sentido isso. O sangue dela corria nas suas veias de um jeito diferente.</p>
+                
+                <p>— Eu só... não entendo por que ela nunca me contou. Por que o segredo? O que era tão grande que precisava ser guardado a sete chaves?</p>
+                
+                <p>Gordon olhou pela janela embaçada, os olhos meio perdidos no horizonte empoeirado, como se visse algo além da rua.</p>
+                
+                <p>— Às vezes, a verdade só cabe na hora certa, meu rapaz. Ela tem seu próprio tempo. E... talvez essa hora esteja chegando para você. Ou talvez ela só estivesse te protegendo até o momento em que você pudesse se proteger sozinho.</p>
+                
+                <p>Ele se levantou, foi até a pia e lavou as mãos lentamente, com uma calma exasperante, o barulho da água correndo preenchendo o vazio da conversa. Enquanto as secava com um pano de prato velho e puído, murmurou algo quase inaudível, mais para si mesmo do que para mim:</p>
+                
+                <p>— Faltam só duas semanas...</p>
+                
+                <p>— O quê? — perguntei, franzindo o cenho, capturado pela estranheza da frase.</p>
+                
+                <p>Ele se virou com um meio sorriso fugaz, um sorriso de quem havia deixado escapar mais do que devia. Um conhecimento íntimo de um calendário que eu desconhecia.</p>
+                
+                <p>— Nada. Coisa minha. Só que o tempo passa rápido demais, sabe? E as promessas se aproximam. E o tempo... ele sempre chega.</p>
+                
+                <p>Eu o encarei em silêncio, a testa franzida em confusão. Meu instinto gritava que aquilo não era "nada". Que o peso de tudo o que ele não dizia era mais substancial do que todas as suas palavras.</p>
+                
+                <p>— Gordon... a carta fala de um lugar. Horebe. O que é aquilo? O que foi? O vô disse que ela falava de um "chamado". Horebe é isso?</p>
+                
+                <p>Ele não respondeu de imediato. Caminhou até um armário velho e escuro, puxou uma xícara de café trincada e a encheu com o líquido escuro e forte. Bebeu um gole longo, sustentando o contato visual, como se me desafiasse a quebrar a tensão. Só então respondeu, a voz mais grave e baixa, carregada de memórias:</p>
+                
+                <p>— Horebe... é mais do que um lugar físico, Jonathan. É uma escolha que você faz. Um chamado que poucos ouvem, e menos ainda aceitam. Um caminho que, uma vez trilhado, não tem volta. É onde a sua avó encontrou a si mesma e a razão de ser dela.</p>
+                
+                <p>— E você esteve lá? Você sabe o que é?</p>
+                
+                <p>Ele me olhou com olhos que ficaram subitamente úmidos. Sua garganta pareceu se fechar por um instante.</p>
+                
+                <p>— Estive, Jonathan. E deixei parte de mim lá. A melhor parte. A parte que era mais próxima dela.</p>
+                
+                <p>— Por que você nunca falou disso antes? Por que esperou a morte dela, e uma carta, para me falar sobre a vida dela?</p>
+                
+                <p>Ele se aproximou, apoiando as mãos firmes nos braços da cadeira em que eu estava sentado, inclinando-se ligeiramente, seu rosto a poucos centímetros do meu. Seus olhos tinham uma intensidade que me fez recuar um pouco.</p>
+                
+                <p>— Porque essa decisão tem que ser sua. De mais ninguém. É a sua herança, mas também é a sua cruz. E antes de qualquer conversa, de qualquer explicação de Gordon, de qualquer mapa detalhado... você precisa decidir se vai dar o primeiro passo.</p>
+                
+                <p>— Como assim? Que passo? Me diga o que procurar!</p>
+                
+                <p>— Vá até o local da carta. Siga as instruções dela à risca. Se Horebe for mesmo pra você... se você estiver pronto para o que aquilo significa, o lugar vai te aceitar. Ele vai abrir. E só então, meu rapaz, a história realmente começa. Você precisa se apresentar para o seu destino. Você precisa se apresentar para o fogo.</p>
+
+                <hr class="scene-break" />
+
+                <p>Saí da casa de Gordon em um silêncio atordoado. As palavras dele ecoavam no meu crânio, ressoando com o que meu avô havia dito. O céu estava se transformando em tons violentos de laranja e púrpura, o crepúsculo pintando um cenário dramático. O vento soprava forte, frio, como se soubesse a magnitude do que eu tinha acabado de ouvir, sussurrando presságios nas árvores.</p>
+                
+                <blockquote class="highlight-quote">“Se Horebe for mesmo pra você... ele vai te aceitar.”</blockquote>
+                
+                <p>Essas palavras, a promessa de um lugar mítico e um desafio solene, martelavam na minha cabeça. O peso da minha avó, o peso da carta, agora tinha um nome e uma geografia misteriosa: Horebe.</p>
+                
+                <p>Voltei para casa com o passo lento, os olhos fixos nas rachaduras do asfalto, e o coração agindo como uma bússola enlouquecida, girando sem rumo. Não contei nada para ninguém. Nem para minha mãe, nem para meu pai, nem para o vô. Algo dentro de mim, uma voz fria e inabalável que soava muito como a calma de minha avó, dizia que aquele era um caminho que eu precisava trilhar sozinho, sem a interferência de suas preocupações ou medos. Eles tentariam me proteger. Eu precisava me expor.</p>
+                
+                <p>Naquela noite, não dormi cedo. A ansiedade me mantinha ligado à eletricidade, uma corrente de nervosismo que percorria meus braços e pernas. Esperei até que todos se recolhessem, o silêncio da casa se tornasse absoluto, pontuado apenas pelo tique-taque lento do relógio da sala. Então, em uma furtividade que eu não sabia que possuía, abri o armário.</p>
+                
+                <p>Peguei a mochila mais velha, a que usava para trilhas nas montanhas, e comecei a colocar o básico: uma troca de roupas, escova de dentes, meu caderno de anotações e algumas canetas, a lanterna que meu avô me dera há anos — um objeto prático, sólido —, a pequena e surrada Bíblia da minha avó — aquela que ela usava até o fim, com as páginas sublinhadas em tinta vermelha e azul, um compêndio de mistérios e fé —, e, por último, a carta.</p>
+                
+                <p>Dobrei a folha com um cuidado quase reverente e a guardei no bolso de dentro da mochila, perto do peito, onde ela continuaria a pesar, mas agora como um talismã, um chamado.</p>
+                
+                <p>A casa estava silenciosa, como se o mundo inteiro estivesse segurando o fôlego antes de um salto. Fui até a janela do meu quarto. A rua estava vazia, o mesmo lampião piscando erraticamente no canto. Mas nada parecia o mesmo. Tudo tinha uma aura de despedida, de fronteira prestes a ser cruzada.</p>
+                
+                <p>Eu não sabia se Horebe era real, se era uma loucura ou uma charada antiga. Não sabia o que encontraria lá, se a sabedoria, o fogo, ou o nada. Mas mesmo com o medo latejando dentro do peito, uma parte de mim — pequena, mas firme e inegável, a mesma voz que parecia habitar o silêncio de Gordon e os olhos do meu avô — sussurrava:</p>
+                
+                <blockquote class="highlight-quote">“Você precisa ir. Ela está esperando por você. O tempo é agora.”</blockquote>
+                
+                <p>E no fundo da alma, eu sabia que essa voz era a única verdade que me restava. Não havia mais como voltar atrás. O primeiro passo já estava dado no momento em que eu tirei a carta do envelope. O destino havia me convocado. E eu estava atendendo ao chamado.</p>
+            </div>
+
+            <footer class="chapter-navigation">
+                <a href="capítulo_1_v1.html" class="nav-btn">&#8592; Anterior</a>
+                <a href="lista_de_capítulos_v1.html" class="nav-btn">Voltar ao sumário &#8594;</a>
+            </footer>
+        </article>
+
+    </main>
+
+</body>
+</html>
