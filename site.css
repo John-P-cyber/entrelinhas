@@ -377,6 +377,30 @@ a {
     box-shadow: 4px 0 8px rgba(0, 0, 0, .2);
 }
 
+.feature-volume.feature-volume-cover {
+    min-height: 0;
+    aspect-ratio: 2 / 3;
+    padding: 0;
+    background: #e9dec5;
+    text-decoration: none;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.feature-volume.feature-volume-cover::before {
+    display: none;
+}
+
+.feature-volume-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-volume-cover:hover {
+    transform: rotate(1deg) translateY(-5px);
+    box-shadow: -16px 20px 0 var(--ember), 0 38px 76px rgba(20, 34, 30, .3);
+}
+
 .volume-top,
 .volume-bottom {
     position: relative;
