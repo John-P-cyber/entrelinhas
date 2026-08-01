@@ -1246,6 +1246,90 @@ a.chapter-row:hover {
     color: var(--ember);
 }
 
+.connections-panel {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: clamp(34px, 6vw, 80px);
+    align-items: center;
+    padding: clamp(34px, 6vw, 68px);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.connections-copy h2 {
+    margin: 10px 0 18px;
+    font-family: var(--serif);
+    font-size: clamp(42px, 5vw, 66px);
+    font-weight: 500;
+    line-height: .96;
+    letter-spacing: -.035em;
+}
+
+.connections-copy p {
+    max-width: 520px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.connections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.connection-card {
+    min-height: 220px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
+}
+
+.connection-card:first-child {
+    background: var(--forest);
+    color: var(--white);
+}
+
+.connection-card:first-child .meta-label {
+    color: var(--gold);
+}
+
+.connection-card:hover {
+    transform: translateY(-5px);
+    background: var(--ember);
+    color: var(--white);
+    box-shadow: 0 18px 40px rgba(30, 38, 34, .14);
+}
+
+.connection-card:hover .meta-label {
+    color: var(--white);
+}
+
+.connection-card strong {
+    margin-top: 34px;
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.connection-action {
+    margin-top: auto;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+}
+
 .site-footer {
     margin-top: 60px;
     border-top: 1px solid var(--line);
@@ -1280,6 +1364,29 @@ a.chapter-row:hover {
 .footer-signoff span {
     display: block;
     margin-top: 6px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.footer-links a {
+    padding: 8px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: #4b514c;
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease;
+}
+
+.footer-links a:hover {
+    background: var(--forest);
+    color: var(--white);
 }
 
 .footer-meta {
@@ -1626,6 +1733,11 @@ body.reader-page {
     .work-actions {
         grid-column: 2;
         display: flex;
+        flex-wrap: wrap;
+    }
+
+    .connections-panel {
+        grid-template-columns: 1fr;
     }
 
     .character-grid,
@@ -1818,6 +1930,14 @@ body.reader-page {
 
     .footer-meta {
         text-align: left;
+    }
+
+    .footer-links {
+        margin-left: 0;
+    }
+
+    .connections-grid {
+        grid-template-columns: 1fr;
     }
 
     .reader-page .sidebar {
