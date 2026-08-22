@@ -29,7 +29,15 @@ for (const entry of entries) {
     }
 }
 
-await copyTree(join(root, 'templates'), join(client, 'templates'));
+await mkdir(join(client, 'templates'), { recursive: true });
+for (const asset of ['logo.jpeg', 'jonathan.jpeg', 'capa_contos_vol1-site.jpg', 'capa_vizinhos_vol1_segredo-site.jpg']) {
+    await copyFile(join(root, 'templates', asset), join(client, 'templates', asset));
+}
+try {
+    await copyTree(join(root, 'templates', 'uploads'), join(client, 'templates', 'uploads'));
+} catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+}
 await copyTree(join(root, 'content'), join(client, 'content'));
 await copyTree(join(root, 'admin'), join(client, 'admin'));
 await copyFile(join(root, 'worker', 'index.js'), join(server, 'index.js'));
