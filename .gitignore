@@ -1,4 +1,5 @@
 .env
+.openai/
 config/
 dist/
 preview-server.*
