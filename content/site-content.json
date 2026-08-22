@@ -1,0 +1,166 @@
+{
+  "settings": {
+    "siteTitle": "Entrelinhas",
+    "siteTagline": "literatura, mundos & código",
+    "wattpadUrl": "https://www.wattpad.com/story/397257413-csf-contos-de-sombra-e-fogo",
+    "instagramUrl": "https://www.instagram.com/joaoaragao.autor?igsh=MXI0ZWUwYTN6ZzQ2eQ=="
+  },
+  "home": {
+    "eyebrow": "Arquivo pessoal · escritor & desenvolvedor",
+    "headlineBefore": "Histórias para",
+    "headlineEmphasis": "atravessar.",
+    "headlineAfter": "Ideias para construir.",
+    "intro": "Este é meu arquivo vivo: um lugar para reunir livros, mundos ficcionais, personagens, notas de processo e as pontes improváveis entre literatura e tecnologia."
+  },
+  "author": {
+    "pageTitle": "Entre sistemas e histórias.",
+    "lead": "Sou desenvolvedor e escritor. Gosto de entender as regras por trás das coisas — e, quando elas ainda não existem, de inventá-las.",
+    "homeSummary": "Trabalho com programação e também escrevo. Em um campo, construo sistemas; no outro, mundos. Nos dois, procuro relações, regras, conflitos e aquela solução que parece inevitável somente depois de encontrada.",
+    "manifestoStructure": "Programar me ensinou a pensar em estrutura. Escrever me ensinou que estrutura sem emoção é apenas uma máquina parada.",
+    "manifestoArchive": "Por isso este site não é somente um portfólio nem apenas uma wiki. É um arquivo autoral: um lugar onde uma obra pode ter capítulos, personagens e mapas; onde uma ideia pode começar pequena; e onde assuntos que me interessam podem encontrar sua própria forma."
+  },
+  "works": [
+    {
+      "id": "contos-de-sombra-e-fogo",
+      "title": "Contos de Sombra e Fogo",
+      "status": "Volume completo",
+      "summary": "Após encontrar uma carta deixada pela avó, Jonathan começa a descobrir a verdade sobre a Escola Monte Horebe e sobre um chamado que atravessa gerações. Uma história de fantasia contemporânea sobre herança, fé, sombra e transformação.",
+      "featuredSummary": "Jonathan sempre desconfiou que o mundo estava fora de prumo. Depois da morte da avó, uma carta e um chamado o conduzem à Escola Monte Horebe — onde Corpo, Mente e Espírito deixam de ser metáforas.",
+      "genre": "Fantasia contemporânea",
+      "volume": "Volume I",
+      "availabilityLabel": "Completo no Wattpad",
+      "cover": "templates/capa_contos_vol1-site.jpg",
+      "featureImage": "templates/logo.jpeg",
+      "coverAlt": "Capa do Volume I de Contos de Sombra e Fogo, escrito por João P. Aragão",
+      "readUrl": "lista_de_capítulos_v1.html",
+      "wattpadUrl": "https://www.wattpad.com/story/397257413-csf-contos-de-sombra-e-fogo",
+      "universeUrl": "personagens.html",
+      "available": true,
+      "featured": true,
+      "noticeTitle": "Universo em expansão",
+      "noticeText": "Mais informações sobre o universo de Contos de Sombra e Fogo serão adicionadas em breve. Para acompanhar o processo e receber as novidades, siga o autor no Instagram."
+    },
+    {
+      "id": "meu-vizinho-do-lado",
+      "title": "Meu vizinho do lado",
+      "status": "Em desenvolvimento · projeto secreto",
+      "summary": "Uma nova história está tomando forma. Por enquanto, a capa é a única pista: sinopse, personagens e data de leitura permanecem em segredo.",
+      "featuredSummary": "Uma nova história está tomando forma. Por enquanto, a capa é a única pista.",
+      "genre": "Novo projeto",
+      "volume": "Volume I",
+      "availabilityLabel": "Segredo",
+      "cover": "templates/capa_vizinhos_vol1_segredo-site.jpg",
+      "featureImage": "templates/capa_vizinhos_vol1_segredo-site.jpg",
+      "coverAlt": "Capa provisória e desfocada de Meu vizinho do lado, com duas pessoas e um gato",
+      "readUrl": "",
+      "wattpadUrl": "",
+      "universeUrl": "",
+      "available": false,
+      "featured": false,
+      "noticeTitle": "",
+      "noticeText": ""
+    }
+  ],
+  "universes": [
+    {
+      "id": "contos-de-sombra-e-fogo",
+      "title": "Contos de Sombra e Fogo",
+      "kicker": "Enciclopédia · arquivo 001",
+      "status": "Universo em expansão",
+      "summary": "Os rostos, forças e lugares que moldam o caminho até a Escola Monte Horebe. Esta enciclopédia acompanha a escrita da obra e evita revelações futuras.",
+      "genre": "Fantasia contemporânea",
+      "spoilers": "Sem spoilers futuros",
+      "cover": "templates/capa_contos_vol1-site.jpg",
+      "coverAlt": "Capa de Contos de Sombra e Fogo",
+      "available": true,
+      "readUrl": "lista_de_capítulos_v1.html",
+      "workUrl": "livro.html"
+    },
+    {
+      "id": "meu-vizinho-do-lado",
+      "title": "Meu vizinho do lado",
+      "kicker": "Arquivo 002 · projeto secreto",
+      "status": "Em desenvolvimento · acesso bloqueado",
+      "summary": "Este universo ainda está em construção. Personagens, lugares e demais informações permanecem em segredo por enquanto.",
+      "genre": "Novo universo",
+      "spoilers": "Segredo",
+      "cover": "templates/capa_vizinhos_vol1_segredo-site.jpg",
+      "coverAlt": "Capa provisória e secreta de Meu vizinho do lado",
+      "available": false,
+      "readUrl": "",
+      "workUrl": ""
+    }
+  ],
+  "characters": [
+    {
+      "id": "jonathan-ribeiro",
+      "name": "Jonathan Ribeiro",
+      "group": "Os Despertos",
+      "role": "Protagonista · O Chamado",
+      "description": "Jovem curioso que sempre percebeu algo desalinhado no mundo. Uma carta da avó transforma essa intuição em caminho.",
+      "tags": ["Corpo", "Mente", "Espírito"],
+      "keywords": "protagonista adolescente chamado corpo mente espírito",
+      "image": "templates/jonathan.jpeg",
+      "imageAlt": "Arte oficial de Jonathan Ribeiro",
+      "initials": "JR"
+    },
+    {
+      "id": "maria-jose",
+      "name": "Maria José",
+      "group": "Vínculos com Horebe",
+      "role": "Legado · Mentora",
+      "description": "Avó de Jonathan e antiga professora de Monte Horebe. Sua carta é o primeiro mapa para uma verdade guardada por anos.",
+      "tags": ["Espírito", "Horebe", "Legado"],
+      "keywords": "avó professora mentora espírito horebe carta",
+      "image": "",
+      "imageAlt": "",
+      "initials": "MJ"
+    },
+    {
+      "id": "gordon",
+      "name": "Gordon",
+      "group": "Vínculos com Horebe",
+      "role": "Guardião · Aliado",
+      "description": "Vizinho de Jonathan e antigo amigo de Maria José. Ele conhece Horebe — e carrega o peso daquilo que não conseguiu proteger.",
+      "tags": ["Sombra", "Fogo", "Horebe"],
+      "keywords": "gordon guardião mentor sombra fogo amigo avó horebe",
+      "image": "",
+      "imageAlt": "",
+      "initials": "G"
+    }
+  ],
+  "notes": [
+    {
+      "id": "nota-de-abertura",
+      "category": "Nota de abertura",
+      "title": "Por que reunir escrita e programação no mesmo lugar?",
+      "summary": "Porque as duas práticas partem de estruturas invisíveis. Uma organiza regras para que sistemas funcionem; a outra, para que mundos pareçam vivos. Este site nasce como ponto de encontro entre esses dois modos de criar.",
+      "state": "Caderno 001 · apresentação",
+      "featured": true
+    },
+    {
+      "id": "da-ideia-ao-capitulo",
+      "category": "Processo criativo",
+      "title": "Da ideia ao capítulo",
+      "summary": "Anotações sobre planejamento, personagens, ritmo e revisão poderão viver aqui.",
+      "state": "Série em preparação",
+      "featured": false
+    },
+    {
+      "id": "ferramentas-para-imaginar",
+      "category": "Código & criação",
+      "title": "Ferramentas para imaginar",
+      "summary": "Experimentos, projetos e reflexões sobre como tecnologia pode ampliar um universo narrativo.",
+      "state": "Série em preparação",
+      "featured": false
+    },
+    {
+      "id": "o-que-alimenta-os-mundos",
+      "category": "Referências",
+      "title": "O que alimenta os mundos",
+      "summary": "Livros, jogos, filmes, ideias e descobertas que merecem continuar circulando.",
+      "state": "Série em preparação",
+      "featured": false
+    }
+  ]
+}

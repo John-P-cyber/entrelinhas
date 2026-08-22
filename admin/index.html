@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://api.github.com; img-src 'self' data: https:; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta name="theme-color" content="#163d35">
+    <title>Painel do autor — Entrelinhas</title>
+    <link rel="stylesheet" href="../site.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="admin.js" defer></script>
+</head>
+<body class="admin-page">
+    <a class="skip-link" href="#painel">Pular para o painel</a>
+
+    <header class="admin-header">
+        <a class="brand" href="../index.html" aria-label="Voltar ao Entrelinhas">
+            <span class="brand-mark">E</span>
+            <span class="brand-copy"><strong>Entrelinhas</strong><small>painel do autor</small></span>
+        </a>
+        <a class="admin-back-link" href="../index.html">Ver o site ↗</a>
+    </header>
+
+    <main id="painel" class="admin-shell">
+        <section class="admin-intro">
+            <div>
+                <span class="kicker">Área reservada</span>
+                <h1>Atualize seu arquivo.</h1>
+                <p>Edite textos, obras, universos, personagens e notas por formulários. Ao publicar, o GitHub Pages atualiza o site automaticamente.</p>
+            </div>
+            <div class="admin-security">
+                <strong>Sua credencial não é armazenada.</strong>
+                <span>Ela permanece somente nesta aba e é apagada ao sair ou fechar o navegador.</span>
+            </div>
+        </section>
+
+        <section class="admin-login" data-login-panel>
+            <div>
+                <span class="meta-label">Identificação do autor</span>
+                <h2>Conectar ao GitHub</h2>
+                <p>Use um token de acesso refinado da conta <strong>John-P-cyber</strong>, limitado ao repositório <strong>entrelinhas</strong> e com permissão de leitura e escrita em “Contents”.</p>
+                <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Criar uma credencial no GitHub ↗</a>
+            </div>
+            <form class="admin-login-form" data-login-form>
+                <label for="github-token">Credencial do GitHub</label>
+                <div class="admin-token-row">
+                    <input id="github-token" name="github-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required>
+                    <button class="button button-primary" type="submit">Entrar no painel</button>
+                </div>
+                <small>O painel confere a conta e rejeita credenciais que não pertençam ao autor.</small>
+            </form>
+        </section>
+
+        <section class="admin-workspace" data-workspace hidden>
+            <div class="admin-toolbar">
+                <div>
+                    <span class="admin-user" data-admin-user>Autor conectado</span>
+                    <span class="admin-save-state" data-save-state>Conteúdo carregado</span>
+                </div>
+                <div class="admin-toolbar-actions">
+                    <button class="button button-secondary" type="button" data-logout>Sair</button>
+                    <button class="button button-primary" type="button" data-save>Publicar alterações</button>
+                </div>
+            </div>
+
+            <nav class="admin-tabs" aria-label="Seções do conteúdo" data-tabs>
+                <button type="button" aria-selected="true" data-tab="geral">Geral</button>
+                <button type="button" aria-selected="false" data-tab="obras">Obras</button>
+                <button type="button" aria-selected="false" data-tab="universos">Universos</button>
+                <button type="button" aria-selected="false" data-tab="personagens">Personagens</button>
+                <button type="button" aria-selected="false" data-tab="caderno">Caderno</button>
+                <button type="button" aria-selected="false" data-tab="autor">Autor</button>
+            </nav>
+
+            <div class="admin-panels" data-panels></div>
+        </section>
+
+        <p class="admin-message" role="status" aria-live="polite" data-message></p>
+    </main>
+</body>
+</html>

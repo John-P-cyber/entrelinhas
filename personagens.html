@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="site.css">
     <script src="site.js" defer></script>
 </head>
-<body>
+<body data-page="universes">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="site-header">
         <div class="header-inner">
@@ -32,7 +32,7 @@
     </header>
 
     <main id="conteudo">
-        <header class="page-hero">
+        <header class="page-hero" data-universe-hero>
             <div class="shell">
                 <nav class="breadcrumbs" aria-label="Trilha de navegação"><a href="index.html">Arquivo</a><span>/</span><span>Universos</span><span>/</span><span>CSF</span></nav>
                 <span class="kicker">Enciclopédia · arquivo 001</span>
@@ -61,6 +61,7 @@
                     <input class="archive-search" type="search" placeholder="Buscar personagem, elemento ou papel…" aria-label="Buscar no índice de personagens" data-archive-search>
                 </div>
 
+                <div data-render-characters>
                 <section class="character-group" aria-labelledby="despertos">
                     <div class="group-heading"><h2 id="despertos">Os Despertos</h2></div>
                     <div class="character-grid">
@@ -100,12 +101,13 @@
                         </article>
                     </div>
                 </section>
+                </div>
 
                 <p class="no-results" data-no-results>Nenhuma ficha corresponde à sua busca.</p>
             </div>
         </section>
 
-        <section class="content-section universe-preview-section" aria-labelledby="proximo-universo">
+        <section class="content-section universe-preview-section" aria-labelledby="proximo-universo" data-render-universe-previews>
             <div class="shell">
                 <div class="section-heading">
                     <div><span class="kicker">Arquivo 002 · projeto secreto</span><h2 id="proximo-universo">Próximo universo.</h2></div>

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="site.css">
     <script src="site.js" defer></script>
 </head>
-<body>
+<body data-page="home">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
     <header class="site-header">
@@ -40,16 +40,16 @@
         <section class="hero">
             <div class="shell hero-grid">
                 <div>
-                    <p class="eyebrow">Arquivo pessoal · escritor & desenvolvedor</p>
-                    <h1>Histórias para <em>atravessar.</em> Ideias para construir.</h1>
-                    <p class="hero-lead">Este é meu arquivo vivo: um lugar para reunir livros, mundos ficcionais, personagens, notas de processo e as pontes improváveis entre literatura e tecnologia.</p>
+                    <p class="eyebrow" data-content="home.eyebrow">Arquivo pessoal · escritor & desenvolvedor</p>
+                    <h1 data-home-headline><span>Histórias para</span> <em>atravessar.</em> <span>Ideias para construir.</span></h1>
+                    <p class="hero-lead" data-content="home.intro">Este é meu arquivo vivo: um lugar para reunir livros, mundos ficcionais, personagens, notas de processo e as pontes improváveis entre literatura e tecnologia.</p>
                     <div class="hero-actions">
                         <a class="button button-primary" href="livro.html">Conhecer as obras <span class="button-arrow">↗</span></a>
                         <a class="button button-secondary" href="#sobre">Sobre o autor</a>
                     </div>
                 </div>
 
-                <div class="hero-object" aria-label="Obra em destaque: Contos de Sombra e Fogo">
+                <div class="hero-object" aria-label="Obra em destaque: Contos de Sombra e Fogo" data-home-cover>
                     <span class="orbit" aria-hidden="true"></span>
                     <div class="availability">Volume completo</div>
                     <a class="feature-volume feature-volume-cover" href="lista_de_capítulos_v1.html" aria-label="Abrir Contos de Sombra e Fogo — Volume I">
@@ -78,7 +78,7 @@
                     <p>Uma fantasia sobre chamado, herança e forças que existem além do que os olhos alcançam.</p>
                 </div>
 
-                <article class="feature-work">
+                <article class="feature-work" data-feature-work>
                     <div class="feature-art">
                         <img src="templates/logo.jpeg" alt="Emblema de Contos de Sombra e Fogo: um sino dourado cercado por ramos">
                         <span class="art-note">Símbolo do arquivo · CSF</span>
@@ -141,7 +141,7 @@
                     </aside>
                     <div class="about-copy">
                         <h2>Dois ofícios, a mesma curiosidade.</h2>
-                        <p>Trabalho com programação e também escrevo. Em um campo, construo sistemas; no outro, mundos. Nos dois, procuro relações, regras, conflitos e aquela solução que parece inevitável somente depois de encontrada.</p>
+                        <p data-content="author.homeSummary">Trabalho com programação e também escrevo. Em um campo, construo sistemas; no outro, mundos. Nos dois, procuro relações, regras, conflitos e aquela solução que parece inevitável somente depois de encontrada.</p>
                         <p>O Entrelinhas nasceu para reunir essas partes sem forçar uma separação. Aqui, cada obra pode ganhar sua própria enciclopédia — e cada interesse pode virar uma nota, um ensaio ou uma nova pergunta.</p>
                         <a class="text-link" href="sobre.html">Continuar lendo <span>→</span></a>
                     </div>
