@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#163d35">
-    <meta name="description" content="Questionário oficial de Contos de Sombra e Fogo: qual seria o seu Aspecto em Horebe?">
+    <meta name="description" content="Descubra qual seria o seu Aspecto em Horebe no quiz oficial de Contos de Sombra e Fogo.">
     <meta property="og:title" content="Qual seria o seu Aspecto em Horebe? — Entrelinhas">
-    <meta property="og:description" content="Responda às 12 perguntas do questionário oficial de Contos de Sombra e Fogo.">
+    <meta property="og:description" content="Responda a 12 perguntas e descubra se o seu Aspecto seria Físico, Mental ou Espiritual.">
     <meta property="og:image" content="og.png">
     <title>Qual seria o seu Aspecto? — Entrelinhas</title>
     <link rel="stylesheet" href="site.css">
     <script src="site.js" defer></script>
+    <script src="quiz.js" defer></script>
 </head>
-<body>
+<body class="quiz-page">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="site-header">
         <div class="header-inner">
@@ -32,35 +33,85 @@
     </header>
 
     <main id="conteudo">
-        <header class="page-hero questionnaire-hero">
+        <section class="quiz-experience">
             <div class="shell">
-                <nav class="breadcrumbs" aria-label="Trilha de navegação"><a href="index.html">Arquivo</a><span>/</span><a href="personagens.html">Universos</a><span>/</span><span>Questionário</span></nav>
-                <span class="kicker">Contos de Sombra e Fogo · experiência oficial</span>
-                <h1>Qual seria o seu Aspecto em Horebe?</h1>
-                <p class="lead">São 12 escolhas entre ação, estratégia e discernimento. Marque uma alternativa por pergunta e guarde suas respostas.</p>
-                <div class="page-meta">
-                    <span><i class="status-dot" aria-hidden="true"></i> Questionário disponível</span>
-                    <span>12 perguntas</span>
-                    <span>Versão pública sem gabarito</span>
-                </div>
-                <div class="button-row">
-                    <a class="button button-primary" href="output/pdf/questionario-qual-seria-seu-aspecto-publico.pdf" target="_blank" rel="noopener">Abrir em nova aba</a>
-                    <a class="button button-secondary" href="output/pdf/questionario-qual-seria-seu-aspecto-publico.pdf" download>Baixar PDF</a>
-                </div>
-            </div>
-        </header>
+                <nav class="breadcrumbs" aria-label="Trilha de navegação"><a href="index.html">Arquivo</a><span>/</span><a href="personagens.html">Universos</a><span>/</span><span>Quiz de Aspectos</span></nav>
 
-        <section class="questionnaire-stage" aria-labelledby="questionnaire-document-title">
-            <div class="shell">
-                <div class="questionnaire-panel">
-                    <div class="questionnaire-panel-head">
-                        <p><strong id="questionnaire-document-title">Questionário público</strong>O arquivo abaixo contém somente as perguntas. O gabarito e as regras de resultado permanecem reservados pelo autor.</p>
-                        <span class="meta-label">3 páginas · PDF</span>
-                    </div>
-                    <a class="questionnaire-preview" href="output/pdf/questionario-qual-seria-seu-aspecto-publico.pdf" target="_blank" rel="noopener" aria-label="Abrir as 12 perguntas do questionário em PDF">
-                        <img src="templates/questionario-aspecto-preview.png" alt="Primeira página do questionário Qual seria o seu Aspecto em Horebe">
-                        <span class="button button-primary">Abrir as 12 perguntas</span>
-                    </a>
+                <div class="quiz-layout">
+                    <header class="quiz-page-copy">
+                        <span class="kicker">Contos de Sombra e Fogo · experiência oficial</span>
+                        <h1>Qual seria o seu Aspecto em Horebe?</h1>
+                        <p>Em Horebe, cada pessoa manifesta uma forma predominante de agir, perceber e responder ao mundo. Faça suas escolhas e descubra a sua.</p>
+                        <div class="quiz-aspect-key" aria-label="Aspectos possíveis">
+                            <span><i class="quiz-key-dot quiz-key-physical" aria-hidden="true"></i>Físico</span>
+                            <span><i class="quiz-key-dot quiz-key-mental" aria-hidden="true"></i>Mental</span>
+                            <span><i class="quiz-key-dot quiz-key-spiritual" aria-hidden="true"></i>Espiritual</span>
+                        </div>
+                    </header>
+
+                    <section class="quiz-shell" data-quiz-root aria-label="Quiz Qual seria o seu Aspecto em Horebe">
+                        <div class="quiz-intro" data-quiz-intro>
+                            <div class="quiz-sigil" aria-hidden="true"><span>F</span><span>M</span><span>E</span></div>
+                            <span class="meta-label">Teste de Aspectos</span>
+                            <h2>Pronto para atravessar os portões?</h2>
+                            <p>São 12 perguntas. Escolha a alternativa que mais combina com você — não existem respostas certas ou erradas.</p>
+                            <dl class="quiz-facts">
+                                <div><dt>12</dt><dd>perguntas</dd></div>
+                                <div><dt>≈ 3</dt><dd>minutos</dd></div>
+                                <div><dt>1</dt><dd>Aspecto</dd></div>
+                            </dl>
+                            <button class="button button-primary quiz-start" type="button" data-quiz-start>Começar o quiz</button>
+                            <p class="quiz-privacy">Suas respostas ficam somente neste navegador e não são enviadas.</p>
+                        </div>
+
+                        <div class="quiz-game" data-quiz-game hidden>
+                            <div class="quiz-progress-head">
+                                <span data-quiz-step>Pergunta 1 de 12</span>
+                                <span data-quiz-progress-label>8% concluído</span>
+                            </div>
+                            <div class="quiz-progress-track" role="progressbar" aria-label="Progresso do quiz" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1" data-quiz-progress>
+                                <span data-quiz-progress-bar></span>
+                            </div>
+                            <div class="quiz-question-wrap">
+                                <span class="quiz-question-number" aria-hidden="true" data-quiz-number>01</span>
+                                <h2 tabindex="-1" data-quiz-question></h2>
+                            </div>
+                            <div class="quiz-options" data-quiz-options role="group" aria-label="Alternativas"></div>
+                            <div class="quiz-controls">
+                                <button class="button button-secondary quiz-back" type="button" data-quiz-back>Anterior</button>
+                                <button class="button button-primary quiz-next" type="button" data-quiz-next disabled>Próxima</button>
+                            </div>
+                            <p class="sr-only" aria-live="polite" data-quiz-announcer></p>
+                        </div>
+
+                        <div class="quiz-result" data-quiz-result hidden>
+                            <div class="quiz-result-mark" aria-hidden="true" data-result-mark></div>
+                            <span class="meta-label">Seu Aspecto em Horebe</span>
+                            <h2 tabindex="-1" data-result-title></h2>
+                            <p class="quiz-result-lead" data-result-lead></p>
+                            <p data-result-detail></p>
+                            <div class="quiz-result-notes">
+                                <div>
+                                    <span class="quiz-result-label">Pontos fortes</span>
+                                    <p data-result-strengths></p>
+                                </div>
+                                <div>
+                                    <span class="quiz-result-label">Seu desafio</span>
+                                    <p data-result-risk></p>
+                                </div>
+                            </div>
+                            <blockquote data-result-quote></blockquote>
+                            <div class="quiz-result-actions">
+                                <a class="button button-primary" href="livro.html">Descobrir Horebe</a>
+                                <button class="button button-secondary" type="button" data-quiz-restart>Refazer o quiz</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="quiz-pdf-note">
+                    <span>Prefere responder no papel?</span>
+                    <a href="output/pdf/questionario-qual-seria-seu-aspecto-publico.pdf" target="_blank" rel="noopener">Abrir versão em PDF ↗</a>
                 </div>
             </div>
         </section>
