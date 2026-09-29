@@ -2,6 +2,7 @@
 .openai/
 config/
 dist/
+tmp/
 preview-server.*
 node_modules/
 *.log

@@ -30,7 +30,7 @@ for (const entry of entries) {
 }
 
 await mkdir(join(client, 'templates'), { recursive: true });
-for (const asset of ['logo.jpeg', 'jonathan.jpeg', 'capa_contos_vol1-site.jpg', 'capa_vizinhos_vol1_segredo-site.jpg']) {
+for (const asset of ['logo.jpeg', 'jonathan.jpeg', 'capa_contos_vol1-site.jpg', 'capa_vizinhos_vol1_segredo-site.jpg', 'questionario-aspecto-preview.png']) {
     await copyFile(join(root, 'templates', asset), join(client, 'templates', asset));
 }
 try {
@@ -40,6 +40,7 @@ try {
 }
 await copyTree(join(root, 'content'), join(client, 'content'));
 await copyTree(join(root, 'admin'), join(client, 'admin'));
+await copyTree(join(root, 'output', 'pdf'), join(client, 'output', 'pdf'));
 await copyFile(join(root, 'worker', 'index.js'), join(server, 'index.js'));
 await copyTree(join(root, '.openai'), join(output, '.openai'));
 
